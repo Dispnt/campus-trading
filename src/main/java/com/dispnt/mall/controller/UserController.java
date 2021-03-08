@@ -2,6 +2,7 @@ package com.dispnt.mall.controller;
 
 
 import com.dispnt.mall.Payload.BuyPayload;
+import com.dispnt.mall.Payload.ItemDetailPayload;
 import com.dispnt.mall.Payload.RegisterCheckPayload;
 import com.dispnt.mall.model.Student;
 import com.dispnt.mall.repository.ItemRepository;
@@ -69,8 +70,7 @@ public class UserController {
         Boolean check = userRepository.existsByStuId(user.getStuId());
 
         if (check){
-            List<User> userList = userRepository.findBystuId(user.getStuId());
-            User real_user = userList.get(0);
+            User real_user = userRepository.findBystuId(user.getStuId());
 
             if (real_user.getPassword().equals(user.getPassword()) ){
                 return real_user;
@@ -101,17 +101,18 @@ public class UserController {
     }
 
     @GetMapping("/purchase/history")
-    public ArrayList<Item> buyItem(@RequestHeader (value="Authorization") String jwt){
+    public ArrayList<ItemDetailPayload> buyItem(@RequestHeader (value="Authorization") String jwt){
         List<User> userList = userRepository.findByJsonWebToken(jwt);
         User user2 = userList.get(0);
         Iterator<PurchaseHistory> iterator = user2.getPurchaseHistory().iterator();
-//        购买列表
-        ArrayList<Item> item_list = new ArrayList<>();
+        ArrayList<ItemDetailPayload> item_list = new ArrayList<>();
 
         while((iterator).hasNext()){
-//            有就添加数量
-            PurchaseHistory ph = (PurchaseHistory)iterator.next();
-            item_list.add( itemRepository.findOne(ph.getItemId()));
+            PurchaseHistory ph = iterator.next();
+            ItemDetailPayload item_added = (ItemDetailPayload) itemRepository.findOne(ph.getItemId());
+            Integer item_seller_id = itemRepository.findOne(ph.getItemId()).getSellerId();
+            item_added.setSellerName(studentRepository.findBystuId(userRepository.findById(item_seller_id).getStuId()).getName());
+            item_list.add(item_added);
         }
 
         return item_list;

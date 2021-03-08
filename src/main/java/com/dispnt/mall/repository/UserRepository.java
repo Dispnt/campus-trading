@@ -12,6 +12,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     Boolean existsByStuId(Integer stuId);
 
-    List<User> findBystuId(Integer stuId);
+    User findBystuId(Integer stuId);
 
+    User findById(Integer id);
 }
