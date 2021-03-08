@@ -40,6 +40,7 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="user_id")
     private Collection<PurchaseHistory> purchaseHistory;
+
     public void addPurchase(PurchaseHistory purchase){
         if(purchaseHistory == null){
             purchaseHistory = new ArrayList<PurchaseHistory>();

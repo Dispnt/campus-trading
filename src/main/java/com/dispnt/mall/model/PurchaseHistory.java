@@ -25,13 +25,10 @@ public class PurchaseHistory {
     private int itemId;
 
 
-
-
-
 //    public PurchaseHistory(String name){
 //        this.name = name;
 //    }
-
+//
     public PurchaseHistory(int userId, int itemId){
         this.userId = userId;
         this.itemId = itemId;
