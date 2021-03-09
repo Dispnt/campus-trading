@@ -121,7 +121,7 @@ public class UserController {
 
             Integer item_seller_id = current_item.getSellerId();
             item_added.setSellerName(studentRepository.findById(userRepository.findById(item_seller_id).getStuId()).getName());
-            System.out.println(studentRepository.findById(userRepository.findById(item_seller_id).getStuId()).getName());
+//            System.out.println(studentRepository.findById(userRepository.findById(item_seller_id).getStuId()).getName());
             item_list.add(item_added);
         }
 
