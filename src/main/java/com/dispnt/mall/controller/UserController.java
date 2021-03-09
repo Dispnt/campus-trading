@@ -89,8 +89,7 @@ public class UserController {
 
     @PostMapping("/buy")
     public User checkHistory(@RequestHeader (value="Authorization") String jwt, @RequestBody BuyPayload item){
-        List<User> userList = userRepository.findByJsonWebToken(jwt);
-        User user2 = userList.get(0);
+        User user2 = userRepository.findByJsonWebToken(jwt);
         int item_id = item.getItemId();
         int user_id = user2.getId();
         PurchaseHistory purchaseHistory = new PurchaseHistory(user_id, item_id);
@@ -102,8 +101,7 @@ public class UserController {
 
     @GetMapping("/purchase/history")
     public ArrayList<ItemDetailPayload> buyItem(@RequestHeader (value="Authorization") String jwt){
-        List<User> userList = userRepository.findByJsonWebToken(jwt);
-        User user2 = userList.get(0);
+        User user2 = userRepository.findByJsonWebToken(jwt);
         Iterator<PurchaseHistory> iterator = user2.getPurchaseHistory().iterator();
         ArrayList<ItemDetailPayload> item_list = new ArrayList<>();
 
@@ -116,7 +114,7 @@ public class UserController {
             item_added.setName(current_item.getName());
             item_added.setPrice(current_item.getPrice());
             item_added.setProductComment(current_item.getProductComment());
-            item_added.setPurchaseHistory(current_item.getPurchaseHistory());
+//            item_added.setPurchaseHistory(current_item.getPurchaseHistory());
             item_added.setSellerId(current_item.getId());
 
             Integer item_seller_id = current_item.getSellerId();

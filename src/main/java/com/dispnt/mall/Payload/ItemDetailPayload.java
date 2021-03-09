@@ -27,5 +27,5 @@ public class ItemDetailPayload {
 
     private int sellerId;
 
-    private Collection<PurchaseHistory> purchaseHistory;
+//    private Collection<PurchaseHistory> purchaseHistory;
 }
