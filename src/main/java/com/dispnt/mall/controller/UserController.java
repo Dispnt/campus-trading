@@ -109,9 +109,19 @@ public class UserController {
 
         while((iterator).hasNext()){
             PurchaseHistory ph = iterator.next();
-            ItemDetailPayload item_added = (ItemDetailPayload) itemRepository.findOne(ph.getItemId());
-            Integer item_seller_id = itemRepository.findOne(ph.getItemId()).getSellerId();
-            item_added.setSellerName(studentRepository.findBystuId(userRepository.findById(item_seller_id).getStuId()).getName());
+            ItemDetailPayload item_added = new ItemDetailPayload();
+            Item current_item = itemRepository.findOne(ph.getItemId());
+            item_added.setId(current_item.getId());
+            item_added.setImgUrl(current_item.getImgUrl());
+            item_added.setName(current_item.getName());
+            item_added.setPrice(current_item.getPrice());
+            item_added.setProductComment(current_item.getProductComment());
+            item_added.setPurchaseHistory(current_item.getPurchaseHistory());
+            item_added.setSellerId(current_item.getId());
+
+            Integer item_seller_id = current_item.getSellerId();
+            item_added.setSellerName(studentRepository.findById(userRepository.findById(item_seller_id).getStuId()).getName());
+            System.out.println(studentRepository.findById(userRepository.findById(item_seller_id).getStuId()).getName());
             item_list.add(item_added);
         }
 
