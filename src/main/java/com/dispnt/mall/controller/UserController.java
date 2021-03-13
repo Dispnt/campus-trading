@@ -3,21 +3,19 @@ package com.dispnt.mall.controller;
 
 import com.dispnt.mall.Payload.BuyPayload;
 import com.dispnt.mall.Payload.RegisterCheckPayload;
-import com.dispnt.mall.model.Student;
 import com.dispnt.mall.repository.ItemRepository;
 import com.dispnt.mall.repository.PurchaseHistoryRepository;
 import com.dispnt.mall.repository.StudentRepository;
 import com.dispnt.mall.repository.UserRepository;
 import com.dispnt.mall.Payload.AuthenticatePayload;
 import com.dispnt.mall.model.Item;
-import com.dispnt.mall.model.PurchaseHistory;
+import com.dispnt.mall.model.Purchase_history;
 import com.dispnt.mall.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 @CrossOrigin("*")
 @RequestMapping("/user")
@@ -87,7 +85,7 @@ public class UserController {
         User user2 = userRepository.findByJsonWebToken(jwt);
         int item_id = item.getItemId();
         int user_id = user2.getId();
-        PurchaseHistory purchaseHistory = new PurchaseHistory(user_id, item_id);
+        Purchase_history purchaseHistory = new Purchase_history(user_id, item_id);
         purchaseHistoryRepository.save(purchaseHistory);
         User user0 = userRepository.findOne(purchaseHistory.getUserId());
 
@@ -97,12 +95,12 @@ public class UserController {
     @GetMapping("/purchase/history")
     public ArrayList<Item> buyItem(@RequestHeader (value="Authorization") String jwt){
         User user2 = userRepository.findByJsonWebToken(jwt);
-        Iterator<PurchaseHistory> iterator = user2.getPurchaseHistory().iterator();
+        Iterator<Purchase_history> iterator = user2.getPurchaseHistory().iterator();
 
         ArrayList<Item> item_list = new ArrayList<>();
 
         while((iterator).hasNext()){
-            PurchaseHistory ph = iterator.next();
+            Purchase_history ph = iterator.next();
             item_list.add(itemRepository.findOne(ph.getItemId()));
             System.out.println(itemRepository.findOne(ph.getItemId()));
 

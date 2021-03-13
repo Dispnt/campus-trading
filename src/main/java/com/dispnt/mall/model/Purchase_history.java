@@ -11,7 +11,7 @@ import java.util.Collection;
 @Setter
 @NoArgsConstructor
 @Entity
-public class PurchaseHistory {
+public class Purchase_history {
     @Id
     @Column(name = "id")
     @GeneratedValue
@@ -29,7 +29,7 @@ public class PurchaseHistory {
 //        this.name = name;
 //    }
 //
-    public PurchaseHistory(int userId, int itemId){
+    public Purchase_history(int userId, int itemId){
         this.userId = userId;
         this.itemId = itemId;
     }

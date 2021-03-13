@@ -9,7 +9,6 @@ import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
 
 import javax.persistence.OneToMany;
 
@@ -25,10 +24,10 @@ public class User {
     private int id;
 
 
-    @Column(name = "jsonWebToken")
+    @Column(name = "json_web_token")
     private String jsonWebToken;
 
-    @Column(name = "stuId")
+    @Column(name = "stu_id")
     private int stuId;
 
     @Column(name = "password")
@@ -37,16 +36,16 @@ public class User {
     @Column(name = "intro")
     private String intro;
 
-    @Column(name = "userName")
+    @Column(name = "user_name")
     private String userName;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="user_id")
-    private Collection<PurchaseHistory> purchaseHistory;
+    private Collection<Purchase_history> purchaseHistory;
 
-    public void addPurchase(PurchaseHistory purchase){
+    public void addPurchase(Purchase_history purchase){
         if(purchaseHistory == null){
-            purchaseHistory = new ArrayList<PurchaseHistory>();
+            purchaseHistory = new ArrayList<>();
         }
         purchaseHistory.add(purchase);
     }

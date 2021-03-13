@@ -3,7 +3,6 @@ package com.dispnt.mall.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.extern.apachecommons.CommonsLog;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -25,10 +24,10 @@ public class Item {
     @Column(name = "price")
     private int price;
 
-    @Column(name = "imgUrl")
+    @Column(name = "img_url")
     private String imgUrl;
 
-    @Column(name = "productComment")
+    @Column(name = "product_comment")
     private String productComment;
 
     @Column(name = "seller_id")
@@ -36,8 +35,8 @@ public class Item {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="item_id")
-    private Collection<PurchaseHistory> purchaseHistory;
-    public Collection<PurchaseHistory> getPurchaseHistory() {
+    private Collection<Purchase_history> purchaseHistory;
+    public Collection<Purchase_history> getPurchaseHistory() {
         return purchaseHistory;
     }
 }
