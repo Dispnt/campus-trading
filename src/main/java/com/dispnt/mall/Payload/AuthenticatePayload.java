@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class AuthenticatePayload {
-    private Integer stuId;
+    private String userName;
     private String password;
 
 }

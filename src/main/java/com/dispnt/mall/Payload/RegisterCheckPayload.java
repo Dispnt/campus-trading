@@ -1,5 +1,6 @@
 package com.dispnt.mall.Payload;
 
+import com.dispnt.mall.model.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,11 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class RegisterCheckPayload {
+public class RegisterCheckPayload extends User {
     private String phoneNumber;
     private String name;
-    private int stuId;
-    private String password;
-    private String intro;
-    private String jsonWebToken;
 }

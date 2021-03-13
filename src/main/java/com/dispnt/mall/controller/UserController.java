@@ -2,7 +2,6 @@ package com.dispnt.mall.controller;
 
 
 import com.dispnt.mall.Payload.BuyPayload;
-import com.dispnt.mall.Payload.ItemDetailPayload;
 import com.dispnt.mall.Payload.RegisterCheckPayload;
 import com.dispnt.mall.model.Student;
 import com.dispnt.mall.repository.ItemRepository;
@@ -48,6 +47,7 @@ public class UserController {
             user.setPassword(stuuser.getPassword());
             user.setIntro(stuuser.getIntro());
             user.setStuId(stuuser.getStuId());
+            user.setUserName(stuuser.getUserName());
             System.out.println("RegisterSuccess");
             return userRepository.save(user);
         }else {
@@ -57,30 +57,25 @@ public class UserController {
 
     }
 
-//    @PostMapping("/register1")
-//    public String userRegister1(@RequestBody RegisterCheckPayload user){
-//        Boolean check = studentRepository.existsByIdAndNameAndPhoneNumber(user.getId(),user.getName(),user.getPhoneNumber());
-//        System.out.println(check);
-//        return "good";
-//    }
 
     @PostMapping("/authenticate")
     public User authenticate(@RequestBody AuthenticatePayload user){
+        User user1 = userRepository.findByUserName(user.getUserName());
+        if (user1 != null){
 
-        Boolean check = userRepository.existsByStuId(user.getStuId());
-
-        if (check){
-            User real_user = userRepository.findBystuId(user.getStuId());
-
-            if (real_user.getPassword().equals(user.getPassword()) ){
-                return real_user;
+            if (user1.getPassword().equals(user.getPassword()) ){
+                return user1;
             }else{
+                System.out.println("Wrong Pwd");
                 return null;
             }
 
-        }else{
+
+        }
+        else{
             return null;
         }
+
 
 
 
@@ -100,27 +95,17 @@ public class UserController {
     }
 
     @GetMapping("/purchase/history")
-    public ArrayList<ItemDetailPayload> buyItem(@RequestHeader (value="Authorization") String jwt){
+    public ArrayList<Item> buyItem(@RequestHeader (value="Authorization") String jwt){
         User user2 = userRepository.findByJsonWebToken(jwt);
         Iterator<PurchaseHistory> iterator = user2.getPurchaseHistory().iterator();
-        ArrayList<ItemDetailPayload> item_list = new ArrayList<>();
+
+        ArrayList<Item> item_list = new ArrayList<>();
 
         while((iterator).hasNext()){
             PurchaseHistory ph = iterator.next();
-            ItemDetailPayload item_added = new ItemDetailPayload();
-            Item current_item = itemRepository.findOne(ph.getItemId());
-            item_added.setId(current_item.getId());
-            item_added.setImgUrl(current_item.getImgUrl());
-            item_added.setName(current_item.getName());
-            item_added.setPrice(current_item.getPrice());
-            item_added.setProductComment(current_item.getProductComment());
-//            item_added.setPurchaseHistory(current_item.getPurchaseHistory());
-            item_added.setSellerId(current_item.getId());
+            item_list.add(itemRepository.findOne(ph.getItemId()));
+            System.out.println(itemRepository.findOne(ph.getItemId()));
 
-            Integer item_seller_id = current_item.getSellerId();
-            item_added.setSellerName(studentRepository.findById(userRepository.findById(item_seller_id).getStuId()).getName());
-//            System.out.println(studentRepository.findById(userRepository.findById(item_seller_id).getStuId()).getName());
-            item_list.add(item_added);
         }
 
         return item_list;

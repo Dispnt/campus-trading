@@ -37,6 +37,9 @@ public class User {
     @Column(name = "intro")
     private String intro;
 
+    @Column(name = "userName")
+    private String userName;
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="user_id")
     private Collection<PurchaseHistory> purchaseHistory;
