@@ -27,7 +27,7 @@ public class ItemController {
         item.setSellerId(user2.getId());
         return itemRepository.save(item);
     }
-    // {"name":"test","price":"123","imgUrl":"https://...","productComment":"苹果"}
+
 
     @GetMapping("/list")
     public List<Item> list(Model model){
