@@ -17,8 +17,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-@CrossOrigin("*")
+
 @RequestMapping("/user")
+@CrossOrigin("*")
 @RestController
 public class UserController {
     @Autowired
@@ -34,12 +35,12 @@ public class UserController {
     private StudentRepository studentRepository;
 
     @PostMapping("/register")
-    public User userRegister(@RequestBody RegisterCheckPayload stuuser){
+    public Object userRegister(@RequestBody RegisterCheckPayload stuuser){
         Boolean checkQualified = studentRepository.existsByIdAndNameAndPhoneNumber(stuuser.getStuId(),stuuser.getName(),stuuser.getPhoneNumber());
         Boolean checkRegistered = userRepository.existsByStuId(stuuser.getStuId());
-
+        User user = new User();
         if (checkQualified && !checkRegistered){
-            User user = new User();
+
             int intNum = (int)(Math.random() * 10000);
             user.setJsonWebToken(Integer.toString(intNum));
             user.setPassword(stuuser.getPassword());
@@ -50,14 +51,14 @@ public class UserController {
             return userRepository.save(user);
         }else {
             System.out.println("RegisterFailed");
-            return null;
+            return "RegisterFailed";
         }
 
     }
 
 
     @PostMapping("/authenticate")
-    public User authenticate(@RequestBody AuthenticatePayload user){
+    public Object authenticate(@RequestBody AuthenticatePayload user){
         User user1 = userRepository.findByUserName(user.getUserName());
         if (user1 != null){
 
@@ -65,13 +66,13 @@ public class UserController {
                 return user1;
             }else{
                 System.out.println("Wrong Pwd");
-                return null;
+                return "Wrong Pwd or account";
             }
 
 
         }
         else{
-            return null;
+            return "Wrong Pwd or account";
         }
 
 
