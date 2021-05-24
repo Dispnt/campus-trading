@@ -33,6 +33,9 @@ public class Item {
     @Column(name = "seller_id")
     private int sellerId;
 
+    @Column(name= "type")
+    private String type;
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="item_id")
     private Collection<Purchase_history> purchaseHistory;

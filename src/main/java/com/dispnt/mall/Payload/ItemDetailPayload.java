@@ -22,5 +22,7 @@ public class ItemDetailPayload {
 
     private int sellerId;
 
+    private String type;
+
 //    private Collection<PurchaseHistory> purchaseHistory;
 }
