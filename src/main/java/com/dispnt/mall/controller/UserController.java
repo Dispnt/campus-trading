@@ -1,7 +1,6 @@
 package com.dispnt.mall.controller;
 
 
-import com.dispnt.mall.Payload.BuyPayload;
 import com.dispnt.mall.Payload.RegisterCheckPayload;
 import com.dispnt.mall.repository.ItemRepository;
 import com.dispnt.mall.repository.PurchaseHistoryRepository;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 
 @RequestMapping("/user")
@@ -82,15 +82,23 @@ public class UserController {
 
 
     @PostMapping("/buy")
-    public User checkHistory(@RequestHeader (value="Authorization") String jwt, @RequestBody BuyPayload item){
+    public User checkHistory(@RequestHeader (value="Authorization") String jwt, @RequestParam("itemid") int itemId){
         User user2 = userRepository.findByJsonWebToken(jwt);
-        int item_id = item.getItemId();
         int user_id = user2.getId();
-        Purchase_history purchaseHistory = new Purchase_history(user_id, item_id);
+        Purchase_history purchaseHistory = new Purchase_history(user_id, itemId);
         purchaseHistoryRepository.save(purchaseHistory);
         User user0 = userRepository.findOne(purchaseHistory.getUserId());
-
+        System.out.println("买了"+itemId);
         return userRepository.save(user0);
+    }
+
+    @PostMapping("/del")
+    public int delItem(@RequestHeader (value="Authorization") String jwt,@RequestParam("itemid") int itemId){
+        List<Purchase_history> item = purchaseHistoryRepository.findByItemIdAndUserId(itemId,userRepository.findByJsonWebToken(jwt).getId());
+        System.out.println(item.get(0).getId());
+//        purchaseHistoryRepository.deleteById(item.get(0).getId());
+
+        return 0;
     }
 
     @GetMapping("/purchase/history")
@@ -103,10 +111,11 @@ public class UserController {
         while((iterator).hasNext()){
             Purchase_history ph = iterator.next();
             item_list.add(itemRepository.findOne(ph.getItemId()));
-            System.out.println(itemRepository.findOne(ph.getItemId()));
 
         }
 
         return item_list;
     }
+
+
 }
