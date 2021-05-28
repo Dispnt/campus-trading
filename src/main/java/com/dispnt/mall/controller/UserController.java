@@ -11,6 +11,7 @@ import com.dispnt.mall.model.Item;
 import com.dispnt.mall.model.Purchase_history;
 import com.dispnt.mall.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -93,11 +94,9 @@ public class UserController {
     }
 
     @PostMapping("/del")
-    public int delItem(@RequestHeader (value="Authorization") String jwt,@RequestParam("itemid") int itemId){
+    public int delItem(@RequestHeader (value="Authorization") String jwt, @RequestParam("itemid") int itemId){
         List<Purchase_history> item = purchaseHistoryRepository.findByItemIdAndUserId(itemId,userRepository.findByJsonWebToken(jwt).getId());
-        System.out.println(item.get(0).getId());
-//        purchaseHistoryRepository.deleteById(item.get(0).getId());
-
+        purchaseHistoryRepository.delete(item.get(0).getId());
         return 0;
     }
 
