@@ -3,8 +3,13 @@ buildscript {
         springBootVersion = '1.5.10.RELEASE'
     }
     repositories {
+        maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         maven { url 'https://maven.aliyun.com/repository/google/' }
         maven { url 'https://maven.aliyun.com/repository/spring/'}
+        maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        jcenter()
+        mavenCentral()
+
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -20,8 +25,10 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
+    maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
     maven { url 'https://maven.aliyun.com/repository/google/' }
     maven { url 'https://maven.aliyun.com/repository/spring/'}
+
 }
 
 
