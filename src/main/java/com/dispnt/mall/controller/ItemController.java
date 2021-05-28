@@ -52,9 +52,10 @@ public class ItemController {
         return types;
     }
 
-    @GetMapping("/search")
+    @GetMapping("/searchitem")
     public List<Item> search(@RequestParam("content") String searchContent){
         List<Item> results = itemRepository.findByNameContaining(searchContent);
+        System.out.println(results);
         return results;
     }
 
