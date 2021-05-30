@@ -65,4 +65,13 @@ public class ItemController {
         return result;
     }
 
+
+
+    @PostMapping("/cataloginfo")
+    public List<Item> getItembyCatalog(@RequestParam("types") String type){
+        List<Item> result= itemRepository.findAllByType(type);
+        return result;
+    }
+
+
 }
