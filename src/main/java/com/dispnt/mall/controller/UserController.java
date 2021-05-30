@@ -11,7 +11,6 @@ import com.dispnt.mall.model.Item;
 import com.dispnt.mall.model.Purchase_history;
 import com.dispnt.mall.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -116,5 +115,12 @@ public class UserController {
         return item_list;
     }
 
+
+    @PostMapping("/sellerinfo")
+    public String getSeller(@RequestParam("userid") int id){
+        User u= userRepository.findById(id);
+        String result = u.getUserName();
+        return result;
+    }
 
 }
