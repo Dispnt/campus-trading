@@ -61,23 +61,16 @@ public class UserController {
     public Object authenticate(@RequestBody AuthenticatePayload user){
         User user1 = userRepository.findByUserName(user.getUserName());
         if (user1 != null){
-
             if (user1.getPassword().equals(user.getPassword()) ){
                 return user1;
             }else{
                 System.out.println("Wrong Pwd");
                 return "Wrong Pwd or account";
             }
-
-
         }
         else{
             return "Wrong Pwd or account";
         }
-
-
-
-
     }
 
 
@@ -99,7 +92,7 @@ public class UserController {
         return 0;
     }
 
-    @GetMapping("/purchase/history")
+    @GetMapping("/cart")
     public ArrayList<Item> buyItem(@RequestHeader (value="Authorization") String jwt){
         User user2 = userRepository.findByJsonWebToken(jwt);
         Iterator<Purchase_history> iterator = user2.getPurchaseHistory().iterator();
