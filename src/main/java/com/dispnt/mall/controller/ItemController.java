@@ -26,8 +26,8 @@ public class ItemController {
 
     @PostMapping("/add")
     public Item addItem(@RequestHeader (value="Authorization") String jwt,@RequestBody Item item){
-        User user2 = userRepository.findByJsonWebToken(jwt);
-        item.setSellerId(user2.getId());
+        User user = userRepository.findByJsonWebToken(jwt);
+        item.setSellerId(user.getId());
         return itemRepository.save(item);
     }
 
@@ -67,8 +67,8 @@ public class ItemController {
 
 
 
-    @PostMapping("/cataloginfo")
-    public List<Item> getItembyCatalog(@RequestParam("types") String type){
+    @GetMapping("/cataloggoods")
+    public List<Item> getItembyCatalog(@RequestParam("type") String type){
         List<Item> result= itemRepository.findAllByType(type);
         return result;
     }
