@@ -2,6 +2,8 @@ package com.dispnt.mall.controller;
 
 
 import com.dispnt.mall.Payload.RegisterCheckPayload;
+import com.dispnt.mall.Payload.UpdateInfoPayload;
+import com.dispnt.mall.model.Student;
 import com.dispnt.mall.repository.ItemRepository;
 import com.dispnt.mall.repository.PurchaseHistoryRepository;
 import com.dispnt.mall.repository.StudentRepository;
@@ -74,8 +76,32 @@ public class UserController {
     }
 
 
+    @GetMapping("/getuser")
+    public User getUserInfo(@RequestHeader (value="Authorization") String jwt){
+        User user = userRepository.findByJsonWebToken(jwt);
+        return user;
+    }
+
+    @GetMapping("/getstudent")
+    public Student getStuedntInfo(@RequestParam("stuid") int stuid){
+        Student student = studentRepository.findById(stuid);
+        return student;
+    }
+
+    @PostMapping("/update")
+    public void updateUserInfo(@RequestHeader (value="Authorization") String jwt, @RequestBody UpdateInfoPayload userupdate){
+        User user = userRepository.findByJsonWebToken(jwt);
+        user.setIntro(userupdate.getIntro());
+        user.setPassword(userupdate.getPassword());
+        user.setUserName(userupdate.getUserName());
+        System.out.println("updated:"+userupdate.getUserName()+" intro to "+userupdate.getIntro());
+        userRepository.save(user);
+
+    }
+
+
     @PostMapping("/buy")
-    public User checkHistory(@RequestHeader (value="Authorization") String jwt, @RequestParam("itemid") int itemId){
+    public User buy(@RequestHeader (value="Authorization") String jwt, @RequestParam("itemid") int itemId){
         User user2 = userRepository.findByJsonWebToken(jwt);
         int user_id = user2.getId();
         Purchase_history purchaseHistory = new Purchase_history(user_id, itemId);
@@ -93,7 +119,7 @@ public class UserController {
     }
 
     @GetMapping("/cart")
-    public ArrayList<Item> buyItem(@RequestHeader (value="Authorization") String jwt){
+    public ArrayList<Item> getCart(@RequestHeader (value="Authorization") String jwt){
         User user2 = userRepository.findByJsonWebToken(jwt);
         Iterator<Purchase_history> iterator = user2.getPurchaseHistory().iterator();
 
