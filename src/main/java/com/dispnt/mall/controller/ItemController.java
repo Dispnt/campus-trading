@@ -13,6 +13,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+/**
+ * Item API
+ */
 @CrossOrigin("*")
 @RequestMapping("/item")
 @RestController
@@ -24,6 +27,10 @@ public class ItemController {
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * Add item to sell
+     * @param item
+     */
     @PostMapping("/add")
     public Item addItem(@RequestHeader (value="Authorization") String jwt,@RequestBody Item item){
         User user = userRepository.findByJsonWebToken(jwt);
@@ -32,13 +39,18 @@ public class ItemController {
     }
 
 
-
+    /**
+     * return all items
+     */
     @GetMapping("/list")
-    public List<Item> list(Model model){
+    public List<Item> list(){
         List<Item> itemList = itemRepository.findAll();
         return itemList;
     }
 
+    /**
+     * return all catalogs
+     */
     @GetMapping("/catalog")
     public HashSet<String> catalog(){
         List<Item> itemList = itemRepository.findAll();
@@ -52,6 +64,10 @@ public class ItemController {
         return types;
     }
 
+    /**
+     * return search result
+     * @param searchContent
+     */
     @GetMapping("/searchitem")
     public List<Item> search(@RequestParam("content") String searchContent){
         List<Item> results = itemRepository.findByNameContaining(searchContent);
@@ -59,6 +75,10 @@ public class ItemController {
         return results;
     }
 
+    /**
+     * get item detail
+     * @param itemId
+     */
     @PostMapping("/get")
     public Item getItem(@RequestParam("itemid") int itemId){
         Item result= itemRepository.findById(itemId);
@@ -66,7 +86,10 @@ public class ItemController {
     }
 
 
-
+    /**
+     * show items in same catalog
+     * @param type
+     */
     @GetMapping("/cataloggoods")
     public List<Item> getItembyCatalog(@RequestParam("type") String type){
         List<Item> result= itemRepository.findAllByType(type);

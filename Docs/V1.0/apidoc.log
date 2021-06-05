@@ -1,0 +1,44 @@
+六月 05, 2021 11:32:42 下午 io.github.yedaxia.apidocs.LogUtils info
+INFO: info: find java src paths:  [D:\学校3\计算机应用能力大赛\1\backend\src\main\java\]
+六月 05, 2021 11:32:42 下午 io.github.yedaxia.apidocs.LogUtils info
+INFO: info: project type not set, try to figure out...
+六月 05, 2021 11:32:42 下午 io.github.yedaxia.apidocs.LogUtils info
+INFO: info: start find controllers in path : D:\学校3\计算机应用能力大赛\1\backend\src\main\java\
+六月 05, 2021 11:32:42 下午 io.github.yedaxia.apidocs.LogUtils info
+INFO: info: find controller file : ItemController.java
+六月 05, 2021 11:32:42 下午 io.github.yedaxia.apidocs.LogUtils info
+INFO: info: find controller file : UserController.java
+六月 05, 2021 11:32:42 下午 io.github.yedaxia.apidocs.LogUtils info
+INFO: info: find controller file : WebRestController.java
+六月 05, 2021 11:32:42 下午 io.github.yedaxia.apidocs.LogUtils info
+INFO: info: start to parse controller file : ItemController.java
+六月 05, 2021 11:32:43 下午 io.github.yedaxia.apidocs.LogUtils info
+INFO: info: success to parse controller file : ItemController.java
+六月 05, 2021 11:32:43 下午 io.github.yedaxia.apidocs.LogUtils info
+INFO: info: start to parse controller file : UserController.java
+六月 05, 2021 11:32:43 下午 io.github.yedaxia.apidocs.LogUtils info
+INFO: info: success to parse controller file : UserController.java
+六月 05, 2021 11:32:43 下午 io.github.yedaxia.apidocs.LogUtils info
+INFO: info: start to parse controller file : WebRestController.java
+六月 05, 2021 11:32:43 下午 io.github.yedaxia.apidocs.LogUtils info
+INFO: info: success to parse controller file : WebRestController.java
+六月 05, 2021 11:32:43 下午 io.github.yedaxia.apidocs.LogUtils info
+INFO: info: generate api docs start...
+六月 05, 2021 11:32:43 下午 io.github.yedaxia.apidocs.LogUtils info
+INFO: info: start to generate docs for controller file : D:\学校3\计算机应用能力大赛\1\backend\src\main\java\com\dispnt\mall\controller\ItemController.java
+六月 05, 2021 11:32:44 下午 io.github.yedaxia.apidocs.LogUtils info
+INFO: info: success to generate docs for controller file : D:\学校3\计算机应用能力大赛\1\backend\src\main\java\com\dispnt\mall\controller\ItemController.java
+六月 05, 2021 11:32:44 下午 io.github.yedaxia.apidocs.LogUtils info
+INFO: info: start to generate docs for controller file : D:\学校3\计算机应用能力大赛\1\backend\src\main\java\com\dispnt\mall\controller\UserController.java
+六月 05, 2021 11:32:44 下午 io.github.yedaxia.apidocs.LogUtils info
+INFO: info: success to generate docs for controller file : D:\学校3\计算机应用能力大赛\1\backend\src\main\java\com\dispnt\mall\controller\UserController.java
+六月 05, 2021 11:32:44 下午 io.github.yedaxia.apidocs.LogUtils info
+INFO: info: start to generate docs for controller file : D:\学校3\计算机应用能力大赛\1\backend\src\main\java\com\dispnt\mall\controller\WebRestController.java
+六月 05, 2021 11:32:44 下午 io.github.yedaxia.apidocs.LogUtils info
+INFO: info: success to generate docs for controller file : D:\学校3\计算机应用能力大赛\1\backend\src\main\java\com\dispnt\mall\controller\WebRestController.java
+六月 05, 2021 11:32:44 下午 io.github.yedaxia.apidocs.LogUtils info
+INFO: info: generate index start !!!
+六月 05, 2021 11:32:44 下午 io.github.yedaxia.apidocs.LogUtils info
+INFO: info: generate index done !!!
+六月 05, 2021 11:32:44 下午 io.github.yedaxia.apidocs.LogUtils info
+INFO: info: generate api docs done !!!

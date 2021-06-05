@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>User API</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="PR.prettyPrint()">
+<nav class="navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">
+                Campus-Mall
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://github.com/YeDaxia/JApiDocs" target="_blank">GitHub</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">V1.0<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="book with-summary">
+    <div class="book-summary">
+<div class="search-box form-group">
+    <input type="text" class="form-control" id="inputSearch" placeholder="search api">
+    <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+</div>
+<div id="accordion" class="catalog">
+        <div class="panel">
+            <div id="heading0" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse0" aria-controls="collapse0">
+                <i class="glyphicon glyphicon-align-justify"></i> Item API
+            </div>
+            <div id="collapse0" class="collapse in " aria-labelledby="heading0">
+                    <a class="catalog-item" href="com_dispnt_mall_controller_ItemController.html#addItem">
+                        Add item to sell
+                    </a>
+                    <a class="catalog-item" href="com_dispnt_mall_controller_ItemController.html#list">
+                        return all items
+                    </a>
+                    <a class="catalog-item" href="com_dispnt_mall_controller_ItemController.html#catalog">
+                        return all catalogs
+                    </a>
+                    <a class="catalog-item" href="com_dispnt_mall_controller_ItemController.html#search">
+                        return search result
+                    </a>
+                    <a class="catalog-item" href="com_dispnt_mall_controller_ItemController.html#getItem">
+                        get item detail
+                    </a>
+                    <a class="catalog-item" href="com_dispnt_mall_controller_ItemController.html#getItembyCatalog">
+                        show items in same catalog
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading1" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse1" aria-controls="collapse1">
+                <i class="glyphicon glyphicon-align-justify"></i> User API
+            </div>
+            <div id="collapse1" class="collapse in " aria-labelledby="heading1">
+                    <a class="catalog-item" href="com_dispnt_mall_controller_UserController.html#userRegister">
+                        register user
+                    </a>
+                    <a class="catalog-item" href="com_dispnt_mall_controller_UserController.html#authenticate">
+                        login/authenticate
+                    </a>
+                    <a class="catalog-item" href="com_dispnt_mall_controller_UserController.html#getUserInfo">
+                        get user detail
+                    </a>
+                    <a class="catalog-item" href="com_dispnt_mall_controller_UserController.html#getStuedntInfo">
+                        get student info
+                    </a>
+                    <a class="catalog-item" href="com_dispnt_mall_controller_UserController.html#updateUserInfo">
+                        update user info
+                    </a>
+                    <a class="catalog-item" href="com_dispnt_mall_controller_UserController.html#buy">
+                        add item to cart
+                    </a>
+                    <a class="catalog-item" href="com_dispnt_mall_controller_UserController.html#delItem">
+                        delete item to cart
+                    </a>
+                    <a class="catalog-item" href="com_dispnt_mall_controller_UserController.html#getCart">
+                        get cart info
+                    </a>
+                    <a class="catalog-item" href="com_dispnt_mall_controller_UserController.html#getSeller">
+                        get seller info
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading2" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse2" aria-controls="collapse2">
+                <i class="glyphicon glyphicon-align-justify"></i> WebRestController
+            </div>
+            <div id="collapse2" class="collapse " aria-labelledby="heading2">
+                    <a class="catalog-item" href="com_dispnt_mall_controller_WebRestController.html#hello">
+                        hello
+                    </a>
+            </div>
+        </div>
+</div>    </div>
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+                <div class="d-flex justify-content-between">
+                    <a class="header-menu toggle-catalog" href="javascript:void(0)"><i
+                            class="glyphicon glyphicon-align-justify"></i> catalog</a>
+                </div>
+            </div>
+            <div class="page-wrapper">
+                <div class="page-inner">
+                    <div class="action-list">
+                        <div class="action-item">
+<h2 id="userRegister"><a href="#">register user </a></h2>
+<p><strong>request url</strong></p>
+<p>
+    <code>/user/register</code>
+        <span class="label label-default">POST</span>
+</p>
+        <p><strong>request body</strong> <span class="badge">application/json</span></p>
+        <pre class="prettyprint lang-json">{
+	"id":"int",
+	"jsonWebToken":"string",
+	"stuId":"int",
+	"password":"string",
+	"intro":"string",
+	"userName":"string",
+	"purchaseHistory":[{
+		"id":"int",
+		"userId":"int",
+		"itemId":"int"
+	}],
+	"items":[{
+		"id":"int",
+		"name":"string",
+		"price":"int",
+		"imgUrl":"string",
+		"productComment":"string",
+		"sellerId":"int",
+		"type":"string",
+		"purchaseHistory":[{
+			"id":"int",
+			"userId":"int",
+			"itemId":"int"
+		}]
+	}],
+	"phoneNumber":"string",
+	"name":"string"
+}</pre>
+    <p><strong>response</strong></p>
+    <pre class="prettyprint lang-json">object{}</pre>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="authenticate"><a href="#">login/authenticate </a></h2>
+<p><strong>request url</strong></p>
+<p>
+    <code>/user/authenticate</code>
+        <span class="label label-default">POST</span>
+</p>
+        <p><strong>request body</strong> <span class="badge">application/json</span></p>
+        <pre class="prettyprint lang-json">{
+	"userName":"string",
+	"password":"string"
+}</pre>
+    <p><strong>response</strong></p>
+    <pre class="prettyprint lang-json">object{}</pre>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="getUserInfo"><a href="#">get user detail </a></h2>
+<p><strong>request url</strong></p>
+<p>
+    <code>/user/getuser</code>
+        <span class="label label-default">GET</span>
+</p>
+        <p><strong>request parameter</strong> <span class="badge">application/x-www-form-urlencoded</span></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>parameter name</th>
+                <th>parameter type</th>
+                <th>must</th>
+                <th>description</th>
+            </tr>
+                    <tr>
+                        <td>jwt</td>
+                        <td>string</td>
+                        <td>N</td>
+                        <td></td>
+                    </tr>
+        </table>
+    <p><strong>response</strong></p>
+    <pre class="prettyprint lang-json">{
+	"id":"int",
+	"jsonWebToken":"string",
+	"stuId":"int",
+	"password":"string",
+	"intro":"string",
+	"userName":"string",
+	"purchaseHistory":[{
+		"id":"int",
+		"userId":"int",
+		"itemId":"int"
+	}],
+	"items":[{
+		"id":"int",
+		"name":"string",
+		"price":"int",
+		"imgUrl":"string",
+		"productComment":"string",
+		"sellerId":"int",
+		"type":"string",
+		"purchaseHistory":[{
+			"id":"int",
+			"userId":"int",
+			"itemId":"int"
+		}]
+	}]
+}</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_dispnt_mall_controller_UserController_getUserInfo_User.html"><i
+                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_dispnt_mall_controller_UserController_getUserInfo_User.html"><i class="fa fa-apple"
+                                                                                                 aria-hidden="true"></i>
+                iOS Model</a>
+        </div>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="getStuedntInfo"><a href="#">get student info </a></h2>
+<p><strong>request url</strong></p>
+<p>
+    <code>/user/getstudent</code>
+        <span class="label label-default">GET</span>
+</p>
+        <p><strong>request parameter</strong> <span class="badge">application/x-www-form-urlencoded</span></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>parameter name</th>
+                <th>parameter type</th>
+                <th>must</th>
+                <th>description</th>
+            </tr>
+                    <tr>
+                        <td>stuid</td>
+                        <td>int</td>
+                        <td>N</td>
+                        <td></td>
+                    </tr>
+        </table>
+    <p><strong>response</strong></p>
+    <pre class="prettyprint lang-json">{
+	"id":"int",
+	"name":"string",
+	"phoneNumber":"string"
+}</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_dispnt_mall_controller_UserController_getStuedntInfo_Student.html"><i
+                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_dispnt_mall_controller_UserController_getStuedntInfo_Student.html"><i class="fa fa-apple"
+                                                                                                 aria-hidden="true"></i>
+                iOS Model</a>
+        </div>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="updateUserInfo"><a href="#">update user info </a></h2>
+<p><strong>request url</strong></p>
+<p>
+    <code>/user/update</code>
+        <span class="label label-default">POST</span>
+</p>
+        <p><strong>request body</strong> <span class="badge">application/json</span></p>
+        <pre class="prettyprint lang-json">{
+	"password":"string",
+	"intro":"string",
+	"userName":"string"
+}</pre>
+    <p><strong>response</strong></p>
+    <pre class="prettyprint lang-json">{}</pre>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="buy"><a href="#">add item to cart </a></h2>
+<p><strong>request url</strong></p>
+<p>
+    <code>/user/buy</code>
+        <span class="label label-default">POST</span>
+</p>
+        <p><strong>request parameter</strong> <span class="badge">application/x-www-form-urlencoded</span></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>parameter name</th>
+                <th>parameter type</th>
+                <th>must</th>
+                <th>description</th>
+            </tr>
+                    <tr>
+                        <td>itemid</td>
+                        <td>int</td>
+                        <td>N</td>
+                        <td></td>
+                    </tr>
+        </table>
+    <p><strong>response</strong></p>
+    <pre class="prettyprint lang-json">{
+	"id":"int",
+	"jsonWebToken":"string",
+	"stuId":"int",
+	"password":"string",
+	"intro":"string",
+	"userName":"string",
+	"purchaseHistory":[{
+		"id":"int",
+		"userId":"int",
+		"itemId":"int"
+	}],
+	"items":[{
+		"id":"int",
+		"name":"string",
+		"price":"int",
+		"imgUrl":"string",
+		"productComment":"string",
+		"sellerId":"int",
+		"type":"string",
+		"purchaseHistory":[{
+			"id":"int",
+			"userId":"int",
+			"itemId":"int"
+		}]
+	}]
+}</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_dispnt_mall_controller_UserController_buy_User.html"><i
+                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_dispnt_mall_controller_UserController_buy_User.html"><i class="fa fa-apple"
+                                                                                                 aria-hidden="true"></i>
+                iOS Model</a>
+        </div>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="delItem"><a href="#">delete item to cart </a></h2>
+<p><strong>request url</strong></p>
+<p>
+    <code>/user/del</code>
+        <span class="label label-default">POST</span>
+</p>
+        <p><strong>request parameter</strong> <span class="badge">application/x-www-form-urlencoded</span></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>parameter name</th>
+                <th>parameter type</th>
+                <th>must</th>
+                <th>description</th>
+            </tr>
+                    <tr>
+                        <td>itemid</td>
+                        <td>int</td>
+                        <td>N</td>
+                        <td></td>
+                    </tr>
+        </table>
+    <p><strong>response</strong></p>
+    <pre class="prettyprint lang-json">{}</pre>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="getCart"><a href="#">get cart info </a></h2>
+<p><strong>request url</strong></p>
+<p>
+    <code>/user/cart</code>
+        <span class="label label-default">GET</span>
+</p>
+    <p><strong>response</strong></p>
+    <pre class="prettyprint lang-json">[{
+	"id":"int",
+	"name":"string",
+	"price":"int",
+	"imgUrl":"string",
+	"productComment":"string",
+	"sellerId":"int",
+	"type":"string",
+	"purchaseHistory":[{
+		"id":"int",
+		"userId":"int",
+		"itemId":"int"
+	}]
+}]</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_dispnt_mall_controller_UserController_getCart_Item.html"><i
+                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_dispnt_mall_controller_UserController_getCart_Item.html"><i class="fa fa-apple"
+                                                                                                 aria-hidden="true"></i>
+                iOS Model</a>
+        </div>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="getSeller"><a href="#">get seller info </a></h2>
+<p><strong>request url</strong></p>
+<p>
+    <code>/user/sellerinfo</code>
+        <span class="label label-default">POST</span>
+</p>
+    <p><strong>response</strong></p>
+    <pre class="prettyprint lang-json">string{}</pre>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+<script>
+
+    var search_source_data = [
+            {name: 'Item API.Add item to sell', url: 'com_dispnt_mall_controller_ItemController.html#addItem'},
+            {name: 'Item API.return all items', url: 'com_dispnt_mall_controller_ItemController.html#list'},
+            {name: 'Item API.return all catalogs', url: 'com_dispnt_mall_controller_ItemController.html#catalog'},
+            {name: 'Item API.return search result', url: 'com_dispnt_mall_controller_ItemController.html#search'},
+            {name: 'Item API.get item detail', url: 'com_dispnt_mall_controller_ItemController.html#getItem'},
+            {name: 'Item API.show items in same catalog', url: 'com_dispnt_mall_controller_ItemController.html#getItembyCatalog'},
+            {name: 'User API.register user', url: 'com_dispnt_mall_controller_UserController.html#userRegister'},
+            {name: 'User API.login/authenticate', url: 'com_dispnt_mall_controller_UserController.html#authenticate'},
+            {name: 'User API.get user detail', url: 'com_dispnt_mall_controller_UserController.html#getUserInfo'},
+            {name: 'User API.get student info', url: 'com_dispnt_mall_controller_UserController.html#getStuedntInfo'},
+            {name: 'User API.update user info', url: 'com_dispnt_mall_controller_UserController.html#updateUserInfo'},
+            {name: 'User API.add item to cart', url: 'com_dispnt_mall_controller_UserController.html#buy'},
+            {name: 'User API.delete item to cart', url: 'com_dispnt_mall_controller_UserController.html#delItem'},
+            {name: 'User API.get cart info', url: 'com_dispnt_mall_controller_UserController.html#getCart'},
+            {name: 'User API.get seller info', url: 'com_dispnt_mall_controller_UserController.html#getSeller'},
+            {name: 'WebRestController.hello', url: 'com_dispnt_mall_controller_WebRestController.html#hello'},
+    ];
+
+
+
+    $('.toggle-catalog').click(function () {
+        $('.book').toggleClass('with-summary');
+    });
+
+    $('#inputSearch').autocomplete({hint: false}, [
+        {
+            source: function (query, callback) {
+                var result = [];
+                for(var i = 0; i !== search_source_data.length; i++){
+                    if(search_source_data[i].name.indexOf(query) !== -1){
+                        result.push(search_source_data[i]);
+                    }
+                }
+                callback(result);
+            },
+            displayKey: 'name',
+            templates: {
+                suggestion: function (suggestion) {
+                    return suggestion.name;
+                }
+            }
+        }
+    ]).on('autocomplete:selected', function (event, suggestion, dataset, context) {
+        self.location = suggestion.url;
+    });
+</script>
+</body>
+</html>

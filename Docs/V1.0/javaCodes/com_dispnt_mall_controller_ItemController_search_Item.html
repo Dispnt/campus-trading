@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Item</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+<link href="../style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<pre class="prettyprint lang-java">
+public class Item implements Serializable{
+
+    private int id; //
+    private String name; //
+    private int price; //
+    private String imgUrl; //
+    private String productComment; //
+    private int sellerId; //
+    private String type; //
+    private Purchase_history[] purchaseHistory; //
+
+    public int getId(){
+        return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public int getPrice(){
+        return price;
+    }
+
+    public void setPrice(int price){
+        this.price = price;
+    }
+
+    public String getImgUrl(){
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl){
+        this.imgUrl = imgUrl;
+    }
+
+    public String getProductComment(){
+        return productComment;
+    }
+
+    public void setProductComment(String productComment){
+        this.productComment = productComment;
+    }
+
+    public int getSellerId(){
+        return sellerId;
+    }
+
+    public void setSellerId(int sellerId){
+        this.sellerId = sellerId;
+    }
+
+    public String getType(){
+        return type;
+    }
+
+    public void setType(String type){
+        this.type = type;
+    }
+
+    public Purchase_history[] getPurchaseHistory(){
+        return purchaseHistory;
+    }
+
+    public void setPurchaseHistory(Purchase_history[] purchaseHistory){
+        this.purchaseHistory = purchaseHistory;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class Purchase_history implements Serializable{
+
+    private int id; //
+    private int userId; //
+    private int itemId; //
+
+    public int getId(){
+        return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public int getUserId(){
+        return userId;
+    }
+
+    public void setUserId(int userId){
+        this.userId = userId;
+    }
+
+    public int getItemId(){
+        return itemId;
+    }
+
+    public void setItemId(int itemId){
+        this.itemId = itemId;
+    }
+
+}
+</pre>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+</body>
+</html>

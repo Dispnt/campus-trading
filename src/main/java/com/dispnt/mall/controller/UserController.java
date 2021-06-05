@@ -19,7 +19,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-
+/**
+ * User API
+ */
 @RequestMapping("/user")
 @CrossOrigin("*")
 @RestController
@@ -36,6 +38,10 @@ public class UserController {
     @Autowired
     private StudentRepository studentRepository;
 
+    /**
+     * register user
+     * @param stuuser
+     */
     @PostMapping("/register")
     public Object userRegister(@RequestBody RegisterCheckPayload stuuser){
         Boolean checkQualified = studentRepository.existsByIdAndNameAndPhoneNumber(stuuser.getStuId(),stuuser.getName(),stuuser.getPhoneNumber());
@@ -58,7 +64,10 @@ public class UserController {
 
     }
 
-
+    /**
+     * login/authenticate
+     * @param user
+     */
     @PostMapping("/authenticate")
     public Object authenticate(@RequestBody AuthenticatePayload user){
         User user1 = userRepository.findByUserName(user.getUserName());
@@ -75,19 +84,30 @@ public class UserController {
         }
     }
 
-
+    /**
+     * get user detail
+     * @param jwt
+     */
     @GetMapping("/getuser")
     public User getUserInfo(@RequestHeader (value="Authorization") String jwt){
         User user = userRepository.findByJsonWebToken(jwt);
         return user;
     }
 
+    /**
+     * get student info
+     * @param stuid
+     */
     @GetMapping("/getstudent")
     public Student getStuedntInfo(@RequestParam("stuid") int stuid){
         Student student = studentRepository.findById(stuid);
         return student;
     }
 
+    /**
+     * update user info
+     * @param userupdate
+     */
     @PostMapping("/update")
     public void updateUserInfo(@RequestHeader (value="Authorization") String jwt, @RequestBody UpdateInfoPayload userupdate){
         User user = userRepository.findByJsonWebToken(jwt);
@@ -99,7 +119,10 @@ public class UserController {
 
     }
 
-
+    /**
+     * add item to cart
+     * @param itemId
+     */
     @PostMapping("/buy")
     public User buy(@RequestHeader (value="Authorization") String jwt, @RequestParam("itemid") int itemId){
         User user2 = userRepository.findByJsonWebToken(jwt);
@@ -111,6 +134,10 @@ public class UserController {
         return userRepository.save(user0);
     }
 
+    /**
+     * delete item to cart
+     * @param itemId
+     */
     @PostMapping("/del")
     public int delItem(@RequestHeader (value="Authorization") String jwt, @RequestParam("itemid") int itemId){
         List<Purchase_history> item = purchaseHistoryRepository.findByItemIdAndUserId(itemId,userRepository.findByJsonWebToken(jwt).getId());
@@ -118,6 +145,9 @@ public class UserController {
         return 0;
     }
 
+    /**
+     * get cart info
+     */
     @GetMapping("/cart")
     public ArrayList<Item> getCart(@RequestHeader (value="Authorization") String jwt){
         User user2 = userRepository.findByJsonWebToken(jwt);
@@ -134,7 +164,9 @@ public class UserController {
         return item_list;
     }
 
-
+    /**
+     * get seller info
+     */
     @PostMapping("/sellerinfo")
     public String getSeller(@RequestParam("userid") int id){
         User u= userRepository.findById(id);

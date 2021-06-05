@@ -39,6 +39,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-jdbc")
     compile('org.springframework.boot:spring-boot-starter-web')
 //    compile('org.springframework.boot:spring-boot-starter-security')
+    compile 'io.github.yedaxia:japidocs:1.4.4'
     compile 'pl.allegro.tech.boot:handlebars-spring-boot-starter:0.2.15'
     runtime('mysql:mysql-connector-java:8.0.22')
     compileOnly('org.projectlombok:lombok:1.18.18')
